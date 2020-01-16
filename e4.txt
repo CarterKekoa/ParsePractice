@@ -1,5 +1,2 @@
-
 elevators 1
-
-up 2 1
-
+up 1 2.5
