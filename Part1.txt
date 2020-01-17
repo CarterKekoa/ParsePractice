@@ -1,0 +1,70 @@
+#Main Program that runs the 3 trivial programs I created
+  #in the notes there was lines of code outside functions like this which is why I did it this way
+var string wordToReverse := "Hello"                       #the string to pass into reverse function
+var string wordToReverseAnswer := reverse(wordToReverse)  #calls the reverse function
+var int number := 5                                       #int to be passed into structs
+structs(number)                                           #call the structs function
+
+
+# Non-Trivial Program 1:
+# This program takes a String and reverses it
+fun string reverse(string wordToReverse)
+  set length := length(wordToReverse)             #get the length of the string
+  var string answer := nil                        #prepare a string that will be filled in the loop
+  for i := 0 to length do                         #Loop that iterates until the length of the string is reached
+    set hold := get((length - i), wordToReverse)  #each iteration this will grab the last-i character in the string
+    set answer := append(answer, hold)            #add the hold char to the answer string
+    set i := i + 1                                #iterate i
+  end
+  print(answer)
+  print("\n")
+end
+
+
+#Non-Trivial Program 2:
+#This program is practice with structured types
+#originally I wanted this function to create nodes based on the int parameter but im not sure how MyPL works yet
+fun nil structs(int number)
+  type Node                   #create the structure of the Node struct
+    var val := 0
+    var Node next := nil
+  end
+
+    var n0 := new Node        #create the nodes
+    var n1 := new Node
+    var n2 := new Node
+
+  while i != number do        #while loop to add values to the struct
+    set n0.val := i           #fill nodes with values
+    set n1.val := i - 1
+    set n2.val := i + 1
+    set i := i + 1            #iterate the i value
+  end
+
+  set n0.next := n1           #link the nodes
+  set n1.next := n2
+  set n2.next := nil
+end
+
+
+#Non-Trivial Program 3:
+#This program takes two strings and performs various tasks like concatenation
+fun string stringFun(string one)
+  var string two := nil
+  set two := read()         #read the string from user input
+  print(one)                #print the strings
+  print(two)
+  set lengthOne := length(one)  #get the lengths of the strings
+  set lengthTwo := length(two)
+
+  if lengthOne = lengthTwo
+    set oneTwo := concat(one, two)  #put the strings together
+    print(oneTwo)
+  else
+    set one := append(one, '1') #append a char to both strings
+    set two := append(two, '2')
+    print(one)                #print the strings
+    print(two)
+  end
+
+end
