@@ -1,9 +1,9 @@
 
 /**
- * Author: 
+ * Author: Carter Mooring
  * Course: CPSC 326, Spring 2020
  * Asgnmt: HW 1
- * 
+ *
  * Description: Simple program for practicing reading from a file,
  * parsing its contents, and printing the results.
  */
@@ -18,7 +18,7 @@ public class ElevatorSimulator {
   private int elevatorCount;               // number of elevators
   private Vector<Integer> elevatorFloors;  // list of elevator locations
 
-  /** 
+  /**
    * Create a new elevator simulator
    */
   public ElevatorSimulator(InputStream inStream) {
@@ -40,7 +40,7 @@ public class ElevatorSimulator {
     return -1;
   }
 
-  /** 
+  /**
    * Returns next character without removing it from the stream.
    */
   private int peek() {
@@ -82,7 +82,7 @@ public class ElevatorSimulator {
   /**
    * Read a sequence of characters (digits) and return as an integer
    * value.
-   */ 
+   */
   private int readInt() {
     String str = "";
     int ch = peek();
@@ -106,9 +106,9 @@ public class ElevatorSimulator {
     System.exit(1);
   }
 
-  /** 
+  /**
    * Builds and runs the simulation
-   */ 
+   */
   public void run() {
     readSpace();
     // check if anything to read
@@ -120,12 +120,56 @@ public class ElevatorSimulator {
     if (!str.equals("elevators")) {
       error("expecting elevator, found '" + str + "'");
     }
+    System.out.println(str);
 
-    // TODO: finish the remainder of the "parser"
+    readSpace();  //read spaces following string
+    elevatorCount = readInt();  //grab the number of elevators
+    if(elevatorCount <= 0){
+      error("expecting more elevators, found '" + elevatorCount + "'");
+    }
+    System.out.println(elevatorCount);
+    readSpace();  //read spaces following number of elevators
+    for(int i = 0; i < elevatorCount; i++){
+      elevatorFloors.add(1);
+    }
+    System.out.println(elevatorFloors);
 
+    // TODO: finish a loop for rest of elevator file
+    while(peek() != -1) {
+      readSpace();
+      str = readString(); //read the new string that contains either up or down
+      if(!str.equals("up") || !str.equals("down")){
+        error("expecting up or down, found '" + str + "'");
+      }
+      System.out.println(str);
+
+      readSpace(); //get spaces after direction
+      int elevatorNumber = readInt(); //contains the elevator number being used
+      if(elevatorNumber <= 0 || elevatorNumber > elevatorCount){
+        error("expecting elevator number greater than 0, found '" + elevatorNumber + "'");
+      }
+      System.out.println(elevatorNumber);
+      readSpace(); //reads space after elevator number
+
+      int floorChange = readInt(); //contains the number of floors moved
+      if(floorChange <= 0){
+        error("expecting number of floors greater than 0, found '" + floorChange + "'");
+      }
+      System.out.println(floorChange);
+
+      if(str.equals("up")){
+        elevatorFloors.set(elevatorNumber - 1, elevatorFloors.get(elevatorNumber - 1) + floorChange);
+      }else if(str.equals("down")) {
+        elevatorFloors.set(elevatorNumber - 1, elevatorFloors.get(elevatorNumber - 1) - floorChange);
+      }
+      readSpace();
+      System.out.println(elevatorFloors);
+    }
+
+    return;
   }
 
-  /** 
+  /**
    * Return the number of elevators resulting after running the
    * simulation.
    */
