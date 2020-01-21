@@ -36,6 +36,17 @@ Elevator 4 is on floor -4
 ---------------------------------------------
 (*) Note that there is no floor 0
 
+--------------- t7.txt output ---------------
+Elevator 1 is on floor 7
+Elevator 2 is on floor 1
+Elevator 3 is on floor 4
+Elevator 4 is on floor 1
+Elevator 5 is on floor 4
+Elevator 6 is on floor 1
+Elevator 7 is on floor 2
+Elevator 8 is on floor 1
+Elevator 9 is on floor 3
+---------------------------------------------
 
 --------------- e1.txt output ---------------
 Error: invalid elevator number '2'
@@ -59,4 +70,20 @@ Error: expecting elevators, found 'elevator'
 
 --------------- e6.txt output ---------------
 Error: expecting 'up' or 'down', found 'up1'
+---------------------------------------------
+
+--------------- e7.txt output ---------------
+Error: expecting up or down, found 'bup'
+---------------------------------------------
+
+--------------- e8.txt output ---------------
+Error: expecting more elevators, found '0'
+---------------------------------------------
+
+--------------- e9.txt output ---------------
+Error: expecting number of floors greater than 0, found '0'
+---------------------------------------------
+
+--------------- e10.txt output ---------------
+Error: expecting elevator, found 'up'
 ---------------------------------------------
