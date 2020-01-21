@@ -1,0 +1,3 @@
+elevators 1
+
+bup 1 100

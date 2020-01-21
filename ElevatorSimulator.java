@@ -120,43 +120,43 @@ public class ElevatorSimulator {
     if (!str.equals("elevators")) {
       error("expecting elevator, found '" + str + "'");
     }
-    System.out.println(str);
 
+    //get the number of elevators
     readSpace();  //read spaces following string
     elevatorCount = readInt();  //grab the number of elevators
     if(elevatorCount <= 0){
       error("expecting more elevators, found '" + elevatorCount + "'");
     }
-    System.out.println(elevatorCount);
     readSpace();  //read spaces following number of elevators
     for(int i = 0; i < elevatorCount; i++){
       elevatorFloors.add(1);
     }
-    System.out.println(elevatorFloors);
 
-    // TODO: finish a loop for rest of elevator file
+    //the loop that sorts through the data and gets grabs the information
     while(peek() != -1) {
       readSpace();
+
+      //read if moving up or down
       str = readString(); //read the new string that contains either up or down
-      if(!str.equals("up") || !str.equals("down")){
+      if(!str.equals("up") && !str.equals("down")){
         error("expecting up or down, found '" + str + "'");
       }
-      System.out.println(str);
-
       readSpace(); //get spaces after direction
+
+      //gets the elevator number and checks it is valid
       int elevatorNumber = readInt(); //contains the elevator number being used
       if(elevatorNumber <= 0 || elevatorNumber > elevatorCount){
-        error("expecting elevator number greater than 0, found '" + elevatorNumber + "'");
+        error("expecting a valid elevator number, found '" + elevatorNumber + "'");
       }
-      System.out.println(elevatorNumber);
       readSpace(); //reads space after elevator number
 
+      //gets the floor number and checks if it is valid
       int floorChange = readInt(); //contains the number of floors moved
       if(floorChange <= 0){
         error("expecting number of floors greater than 0, found '" + floorChange + "'");
       }
-      System.out.println(floorChange);
 
+      //stores the elevators location for each line and updates if a later line changes it
       if(str.equals("up")){
         elevatorFloors.set(elevatorNumber - 1, elevatorFloors.get(elevatorNumber - 1) + floorChange);
       }else if(str.equals("down")) {
@@ -165,7 +165,6 @@ public class ElevatorSimulator {
       readSpace();
       System.out.println(elevatorFloors);
     }
-
     return;
   }
 
